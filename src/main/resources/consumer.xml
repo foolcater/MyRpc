@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<consumer>
+    <consu id="HahaService" class="com.hua.rpc.service.impl.HahaServiceImpl"></consu>
+    <consu id="HelloService" class="com.hua.rpc.service.impl.HelloServiceImpl"/>
+</consumer>
