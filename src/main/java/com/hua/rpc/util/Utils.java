@@ -36,9 +36,4 @@ public class Utils {
         }
         return null;
     }
-
-    public static void main(String[] args) throws Exception{
-        InetAddress address = Utils.getLocalHostLANAddress();
-        System.out.println(address.getHostAddress());
-    }
 }

@@ -127,14 +127,17 @@ public class RPCFuture implements Future<Object>{
         private final int done = 1;
         private final int preding = 0;
 
+        //执行获取锁的操作，先执行tryAcquire方法，失败之后，加入等待线程队列，等待下次激活
         @Override
         protected boolean tryAcquire(int acquires) {
+            LOGGER.info(Thread.currentThread().getName() + " state is " + getState());
             return getState() == done? true:false;
         }
 
         @Override
         protected boolean tryRelease(int releases) {
             if (getState() == preding){
+                //当当前值是preding的时候，才能将当前值修改为done
                 if (compareAndSetState(preding, done)){
                     return true;
                 }

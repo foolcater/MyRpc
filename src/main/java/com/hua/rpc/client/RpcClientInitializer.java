@@ -7,12 +7,15 @@ import com.hua.rpc.protocol.RpcResponse;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 
 public class RpcClientInitializer extends ChannelInitializer<SocketChannel>{
 
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         socketChannel.pipeline().addLast(new RpcEncoder(RpcRequest.class))
+                .addLast(new LoggingHandler(LogLevel.INFO))
                 .addLast(new LengthFieldBasedFrameDecoder(65536,0,4,0,0))
                 .addLast(new RpcDecoder(RpcResponse.class))
                 .addLast(new RpcClientHandler());
